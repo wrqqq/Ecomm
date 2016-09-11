@@ -1,7 +1,6 @@
 //size window and replace dom elements for seo targets
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-console.log(w + ' ' + h)
 if (w >= 600 && h >= 500) {
 	var card = document.getElementById("card");
 	var title = document.getElementById("title");
@@ -14,7 +13,7 @@ if (w >= 600 && h >= 500) {
 //lung algorithm 
 
 function valid_credit_card(value) {
-	if (isNaN(value)) {
+	 if (value == '') {
 		return false
 	}
 	if (/[^0-9-\s]+/.test(value)) return false;
@@ -35,20 +34,46 @@ function valid_credit_card(value) {
 	}
 	return (nCheck % 10) == 0;
 }
+// styles of validation
 var card_val = document.getElementById("card_val");
 card_val.onblur = function() {
   var value = this.value;
   valid_credit_card(value);
-  if(valid_credit_card(value) == true) {
+  if (card_val.value[0] == '4') {
+  		document.getElementById("corp_img").src="img/visa.png";
+
+  	} else if (card_val.value[0] == '5') {
+  		document.getElementById("corp_img").src="img/mastercard.png";
+  	} else if (card_val.value == '') {
+  		document.getElementById("corp_img").src="";
+  	}
+  if(valid_credit_card(value)) {
   	card_val.className = 'valid_card';
   } else {
   	card_val.className = 'invalid_card';
   }
-  console.log(valid_credit_card(value));
+  var value = this.value;
+  
   if (value.length > 15) {
-  	card_val.oninput = function() {
-  		valid_credit_card(value)
+  card_val.oninput = function() {
+  	valid_credit_card(value)
+  	if(valid_credit_card(value)) {
+  	card_val.className = 'valid_card';
+  } else {
+  	card_val.className = 'invalid_card';
+  }
   	}
   }
 
 };
+card_val.oninput = function() {
+  	
+  	if (card_val.value[0] == '4') {
+  		document.getElementById("corp_img").src="img/visa.png";
+
+  	} else if (card_val.value[0] == '5') {
+  		document.getElementById("corp_img").src="img/mastercard.png";
+  	} else if (card_val.value == '') {
+  		document.getElementById("corp_img").src="";
+  	}
+  }
