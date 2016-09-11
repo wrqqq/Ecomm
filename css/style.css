@@ -2,8 +2,10 @@
 	margin: 0;	
 	padding: 0;
 }
-#wrapper {
+body {
 	background-color: grey;
+}
+#wrapper {
 	padding-top: 20px;	
 }
 #card {
@@ -12,6 +14,11 @@
 	width: 280px;	
 	margin: 0 auto;
 	border-radius: 5px;	
+	margin-bottom: 20px;	
+}
+.card_name {
+	margin-top: 46px;	
+	margin-left: 20px;	
 }
 #title {
 	text-align: center;	
